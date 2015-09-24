@@ -16,4 +16,55 @@ function setMarker(myLatLng){
 		title: 'Hello World!'
 	});
 }
-  
+
+
+
+
+ 
+document.getElementById("myForm").addEventListener("submit", function(event){
+	event.preventDefault()
+	saveContact();
+
+});
+
+function saveContact(){
+	var Objcontact = {};
+	Objcontact.username = document.getElementById("username").value;
+	Objcontact.name = document.getElementById("name").value;
+
+if(localStorage.addressbook === undefined){
+		var arrContacts = [Objcontact]
+		localStorage.addressbook = JSON.stringify(arrContacts);
+	} else {
+		var arrContacts = JSON.parse(localStorage.addressbook)
+		arrContacts.push(Objcontact);
+		localStorage.addressbook = JSON.stringify(arrContacts);
+	}
+
+	drawCard(Objcontact);
+}
+
+function drawCard(person){
+	newCard += person.username;
+	newCard += person.name;
+	document.getElementById("book").innerHTML += newCard;  
+}
+
+function loadContacts(){
+	var arrContacts = JSON.parse(localStorage.addressbook)
+
+
+	for (i=0; i < arrContacts.length; i++){
+		drawCard(arrContacts[i])	
+	}
+
+
+}
+
+loadContacts();
+
+
+
+
+
+
