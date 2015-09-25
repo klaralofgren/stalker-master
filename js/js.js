@@ -30,7 +30,8 @@ document.getElementById("myForm").addEventListener("submit", function(event){
 function saveContact(){
 	var Objcontact = {};
 	Objcontact.username = document.getElementById("username").value;
-	Objcontact.name = document.getElementById("name").value;
+
+
 
 if(localStorage.addressbook === undefined){
 		var arrContacts = [Objcontact]
@@ -46,8 +47,7 @@ if(localStorage.addressbook === undefined){
 
 function drawCard(person){
 	newCard += person.username;
-	newCard += person.name;
-	document.getElementById("book").innerHTML += newCard;  
+	document.getElementById("contacts").innerHTML += newCard;  
 }
 
 function loadContacts(){
